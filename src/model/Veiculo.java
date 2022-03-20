@@ -9,7 +9,6 @@ public class Veiculo {
 	private String consumoKmLitro;
 	
 	public Veiculo(int id, String placa, String modelo, int ano, char veiculoDisponivel, String consumoKmLitro) {
-		super();
 		this.id = id;
 		this.placa = placa;
 		this.modelo = modelo;

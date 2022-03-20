@@ -14,7 +14,6 @@ public class Colaborador {
 	
 	public Colaborador(int id, String nome, String endereco, String cpf, String cargo, double salario, String telefone,
 			char cnhB) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;

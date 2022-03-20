@@ -12,7 +12,6 @@ public class Chamado {
 	
 	public Chamado(int id, LocalDate dataChamado, String enderecoAtendimento, double distanciaPercorrida,
 			Colaborador colaborador, Veiculo veiculo) {
-		super();
 		this.id = id;
 		this.dataChamado = dataChamado;
 		this.enderecoAtendimento = enderecoAtendimento;
