@@ -8,8 +8,7 @@ public class Veiculo {
 	private char veiculoDisponivel;
 	private String consumoKmLitro;
 	
-	public Veiculo(int id, String placa, String modelo, int ano, char veiculoDisponivel, String consumoKmLitro) {
-		this.id = id;
+	public Veiculo(String placa, String modelo, int ano, char veiculoDisponivel, String consumoKmLitro) {
 		this.placa = placa;
 		this.modelo = modelo;
 		this.ano = ano;

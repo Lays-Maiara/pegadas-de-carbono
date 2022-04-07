@@ -10,9 +10,8 @@ public class Chamado {
 	private Colaborador colaborador;
 	private Veiculo veiculo;
 	
-	public Chamado(int id, LocalDate dataChamado, String enderecoAtendimento, double distanciaPercorrida,
+	public Chamado(LocalDate dataChamado, String enderecoAtendimento, double distanciaPercorrida,
 			Colaborador colaborador, Veiculo veiculo) {
-		this.id = id;
 		this.dataChamado = dataChamado;
 		this.enderecoAtendimento = enderecoAtendimento;
 		this.distanciaPercorrida = distanciaPercorrida;
