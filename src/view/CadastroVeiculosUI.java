@@ -142,6 +142,7 @@ public class CadastroVeiculosUI extends JInternalFrame {
 					Veiculo veiculo = new Veiculo(placa, modelo, ano, veiculoDisponivel, consumo);
 					new VeiculoController().salvar(veiculo);
 					JOptionPane.showMessageDialog(null, "Veículo cadastrado com sucesso");
+					dispose();
 				}catch(Exception ex) {
 					JOptionPane.showMessageDialog(null, "Erro ao salvar veículo");
 				}
