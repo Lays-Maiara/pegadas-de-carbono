@@ -63,6 +63,10 @@ public class Veiculo {
 	public void setConsumoKmLitro(String consumoKmLitro) {
 		this.consumoKmLitro = consumoKmLitro;
 	}
+	
+	public String toString(){
+		return placa + " - " + modelo;
+	}
 
 	
 }

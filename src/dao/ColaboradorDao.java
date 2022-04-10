@@ -22,7 +22,7 @@ public class ColaboradorDao {
 	
 	public void salvar(Colaborador colaborador) {
 		try {
-			String sql = "isert into colaborador (nome, endereco, cpf, cargo, salario, telefone, cnhB) values (?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into colaborador (nome, endereco, cpf, cargo, salario, telefone, cnhB) values (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, colaborador.getNome());
 			pstmt.setString(2, colaborador.getEndereco());
@@ -40,7 +40,7 @@ public class ColaboradorDao {
 	
 	public void atualizar(Colaborador colaborador) {
 		try {
-			String sql = "update colaborador set nome = ?, endereco, cpf = ?, cargo = ?, salario = ?, telefone = ?, cnhB = ? where id = ?";
+			String sql = "update colaborador set nome = ?, endereco = ?, cpf = ?, cargo = ?, salario = ?, telefone = ?, cnhB = ? where id = ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, colaborador.getNome());
 			pstmt.setString(2, colaborador.getEndereco());

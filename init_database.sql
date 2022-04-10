@@ -51,13 +51,13 @@ CREATE TABLE IF NOT EXISTS `poo`.`veiculo` (
 CREATE TABLE IF NOT EXISTS `poo`.`chamado` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `dataChamado` DATE NOT NULL,
-  `enderecoAtendimento` VARCHAR(150) NOT NULL,
+  `endereco` VARCHAR(150) NOT NULL,
   `distanciaPercorrida` INT NOT NULL,
-  `colaborador` INT NOT NULL,
-  `veiculo` INT NOT NULL,
+  `motorista` INT NOT NULL,
+  `carro` INT NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`colaborador`) REFERENCES `poo`.`colaborador` (`id`),
-  FOREIGN KEY (`veiculo`) REFERENCES `poo`.`veiculo` (`id`));
+  FOREIGN KEY (`motorista`) REFERENCES `poo`.`colaborador` (`id`),
+  FOREIGN KEY (`carro`) REFERENCES `poo`.`veiculo` (`id`));
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

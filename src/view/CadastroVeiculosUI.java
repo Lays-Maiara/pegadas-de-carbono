@@ -25,6 +25,8 @@ public class CadastroVeiculosUI extends JInternalFrame {
 	private JTextField txtModelo;
 	private JTextField txtAno;
 	private JTextField txtConsumoKmLitro;
+	private Veiculo veiculo;
+	private JCheckBox cbxVeiculoDisponivel;
 
 	/**
 	 * Launch the application.
@@ -46,6 +48,7 @@ public class CadastroVeiculosUI extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public CadastroVeiculosUI() {
+		
 		setClosable(true);
 		setTitle("Cadastro de Ve\u00EDculos");
 		setBounds(100, 100, 733, 252);
@@ -73,7 +76,7 @@ public class CadastroVeiculosUI extends JInternalFrame {
 		txtConsumoKmLitro = new JTextField();
 		txtConsumoKmLitro.setColumns(10);
 		
-		JCheckBox cbxVeiculoDisponivel = new JCheckBox("Ve\u00EDculo dispon\u00EDvel?");
+		cbxVeiculoDisponivel = new JCheckBox("Ve\u00EDculo dispon\u00EDvel?");
 		GroupLayout gl_jpCadastroVeiculos = new GroupLayout(jpCadastroVeiculos);
 		gl_jpCadastroVeiculos.setHorizontalGroup(
 			gl_jpCadastroVeiculos.createParallelGroup(Alignment.LEADING)
@@ -123,28 +126,55 @@ public class CadastroVeiculosUI extends JInternalFrame {
 		jpCadastroVeiculos.setLayout(gl_jpCadastroVeiculos);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String placa = txtPlaca.getText();
-					String modelo = txtModelo.getText();
-					int ano = Integer.parseInt(txtAno.getText());
 					char veiculoDisponivel;
-					if (cbxVeiculoDisponivel.isSelected()) {
-						veiculoDisponivel = 'S';
-					} else {
-						veiculoDisponivel = 'N';
-					}
-					String consumo = txtConsumoKmLitro.getText();
 					
-					Veiculo veiculo = new Veiculo(placa, modelo, ano, veiculoDisponivel, consumo);
-					new VeiculoController().salvar(veiculo);
-					JOptionPane.showMessageDialog(null, "Veículo cadastrado com sucesso");
-					dispose();
+					if(veiculo != null && veiculo.getId() > 0) {
+						veiculo.setPlaca(txtPlaca.getText());
+						veiculo.setModelo(txtModelo.getText());
+						veiculo.setAno(Integer.parseInt(txtAno.getText()));
+			
+						if (cbxVeiculoDisponivel.isSelected()) {
+							veiculoDisponivel = 'S';
+						} else {
+							veiculoDisponivel = 'N';
+						}
+						veiculo.setVeiculoDisponivel(veiculoDisponivel);
+						veiculo.setConsumoKmLitro(txtConsumoKmLitro.getText());
+						new VeiculoController().atualizar(veiculo);
+						JOptionPane.showMessageDialog(null, "Veículo atualizado com sucesso");
+						dispose();
+					} else {
+						String placa = txtPlaca.getText();
+						String modelo = txtModelo.getText();
+						int ano = Integer.parseInt(txtAno.getText());
+						if (cbxVeiculoDisponivel.isSelected()) {
+							veiculoDisponivel = 'S';
+						} else {
+							veiculoDisponivel = 'N';
+						}
+						String consumo = txtConsumoKmLitro.getText();
+						
+						Veiculo veiculo = new Veiculo(placa, modelo, ano, veiculoDisponivel, consumo);
+						
+						new VeiculoController().salvar(veiculo);
+						
+						JOptionPane.showMessageDialog(null, "Veículo cadastrado com sucesso");
+						dispose();
+					}
+				
+					
 				}catch(Exception ex) {
-					JOptionPane.showMessageDialog(null, "Erro ao salvar veículo");
+					JOptionPane.showMessageDialog(null, "Erro ao efetuar a operação");
 				}
 			}
 		});
@@ -176,5 +206,26 @@ public class CadastroVeiculosUI extends JInternalFrame {
 		);
 		getContentPane().setLayout(groupLayout);
 
+	}
+		
+	public void setVeiculoEdicao(Veiculo veiculo) {
+		this.veiculo = veiculo;
+		preencheFormulario();
+	}
+	
+	private void preencheFormulario() {
+		if(veiculo != null) {
+			txtPlaca.setText(veiculo.getPlaca());
+			txtModelo.setText(veiculo.getModelo());
+			txtAno.setText(Integer.toString(veiculo.getAno()));
+			if (veiculo.getVeiculoDisponivel() == 'S') {
+				cbxVeiculoDisponivel.setSelected(true);
+			} else {
+				cbxVeiculoDisponivel.setSelected(false);
+			}
+			txtConsumoKmLitro.setText(veiculo.getConsumoKmLitro());
+			
+			
+		}
 	}
 }
